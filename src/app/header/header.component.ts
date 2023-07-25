@@ -1,6 +1,6 @@
 import { style } from '@angular/animations';
 import { Component, HostListener, Input, OnInit } from '@angular/core';
-
+import { Languages } from './header-dummy-data';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -12,7 +12,8 @@ export class HeaderComponent {
   @Input() collapsed!:boolean;
 
   selectedLanguage:any;
-
+  languages=Languages;
+  
   hidePlaceholder() {
     const searchInput = document.querySelector('.search') as HTMLInputElement;
     searchInput.classList.add('hide-placeholder');

@@ -2,7 +2,7 @@
 export const Languages = [
     {
         language : 'english',
-        flag: 'us'
+        flag: 'US'
     },
     {
         language : 'french',
@@ -10,7 +10,7 @@ export const Languages = [
     },
     {
         language : 'arabic',
-        flag: 'ar'
+        flag: 'sda'
     }
 
 ]
