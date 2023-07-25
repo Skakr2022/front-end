@@ -1,5 +1,5 @@
 import { style } from '@angular/animations';
-import { Component, HostListener, Input } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,8 +7,11 @@ import { Component, HostListener, Input } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  
   @Input() ScreenWidth!:number;
   @Input() collapsed!:boolean;
+
+  selectedLanguage:any;
 
   hidePlaceholder() {
     const searchInput = document.querySelector('.search') as HTMLInputElement;
@@ -20,6 +23,14 @@ export class HeaderComponent {
     searchInput.classList.remove('hide-placeholder');
   }
 
+  // clickOnAdmin(){  
+  //   const userBtn=document.querySelector('.head-user-avatar-container') as HTMLElement;
+  //     userBtn.classList.add('active');
+  //   setTimeout(() => {
+  //     userBtn.classList.remove('active');
+  //   }, 170);
+  // }
+
   getHeaderClass():string{
     let styleClass=''
     if(this.collapsed && this.ScreenWidth>=768){
@@ -30,4 +41,6 @@ export class HeaderComponent {
     }
    return styleClass;
   }
+
+  
 }
