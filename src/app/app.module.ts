@@ -13,8 +13,19 @@ import { MediaComponent } from './media/media.component';
 import { SettingsComponent } from './settings/settings.component';
 import { HeaderComponent } from './header/header.component';
 import { ChatComponent } from './chat/chat.component';
-// import { CdkMenuModule } from '@angular/cdk/menu';
-// import { OverlayModule } from '@angular/cdk/overlay'
+import { CdkMenuModule } from '@angular/cdk/menu';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { AdminProfileComponent } from './admin-profile/admin-profile.component';
+import {
+  CdkMenuItemRadio,
+  CdkMenuItemCheckbox,
+  CdkMenuGroup,
+  CdkMenu,
+  CdkMenuTrigger,
+  CdkMenuItem,
+  CdkMenuBar,
+} from '@angular/cdk/menu';
+
 
 @NgModule({
   declarations: [
@@ -29,13 +40,22 @@ import { ChatComponent } from './chat/chat.component';
     MediaComponent,
     SettingsComponent,
     HeaderComponent,
-    ChatComponent
+    ChatComponent,
+    AdminProfileComponent
   ],
+  
   imports: [
     BrowserModule,
-     AppRoutingModule,
-    // CdkMenuModule
- 
+    AppRoutingModule,
+     CdkMenuModule,
+     OverlayModule,
+     CdkMenuBar,
+     CdkMenuItem,
+     CdkMenuTrigger,
+     CdkMenu,
+     CdkMenuGroup,
+     CdkMenuItemCheckbox,
+     CdkMenuItemRadio
   ],
   providers: [],
   bootstrap: [AppComponent]

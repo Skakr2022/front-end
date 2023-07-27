@@ -1,22 +1,39 @@
-import { style } from '@angular/animations';
+
 import { Component, HostListener, Input, OnInit } from '@angular/core';
-import { Languages } from './header-dummy-data';
+import { Languages, adminElements } from './header-dummy-data';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   
   @Input() ScreenWidth!:number;
   @Input() collapsed!:boolean;
-
   selectedLanguage:any;
-  languages=Languages;
+  languages = Languages;
+  AdminItems=adminElements;
   
+  ngOnInit(): void {
+      this.selectedLanguage=this.languages[0];
+  }
+
+  
+
+  onLanguageSelect(lang: any): void {
+    this.selectedLanguage = lang;
+    
+    
+  }
+
+  HideOverlay() {
+    const ngTemplate=document.querySelector('.Hiding') as HTMLElement;
+    ngTemplate.classList.add('hide-element');
+  }
+
   hidePlaceholder() {
     const searchInput = document.querySelector('.search') as HTMLInputElement;
-    searchInput.classList.add('hide-placeholder');
+      searchInput.classList.add('hide-placeholder');
   }
 
   showPlaceholder() {
@@ -42,6 +59,5 @@ export class HeaderComponent {
     }
    return styleClass;
   }
-
   
 }
