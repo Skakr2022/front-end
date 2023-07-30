@@ -1,24 +1,34 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProductsComponent } from './products/products.component';
-import { StatisticsComponent } from './statistics/statistics.component';
-import { PagesComponent } from './pages/pages.component';
-import { CoupensComponent } from './coupens/coupens.component';
-import { MediaComponent } from './media/media.component';
-import { SettingsComponent } from './settings/settings.component';
-import { AdminProfileComponent } from './admin-profile/admin-profile.component';
+import { DashboardComponent } from './DashboardPage/dashboard/dashboard.component';
+import { ProductsComponent } from './DashboardPage/products/products.component';
+import { StatisticsComponent } from './DashboardPage/statistics/statistics.component';
+import { PagesComponent } from './DashboardPage/pages/pages.component';
+import { CoupensComponent } from './DashboardPage/coupens/coupens.component';
+import { MediaComponent } from './DashboardPage/media/media.component';
+import { SettingsComponent } from './DashboardPage/settings/settings.component';
+import { AdminProfileComponent } from './DashboardPage/admin-profile/admin-profile.component';
+import { LoginComponent } from './Authentification/login/login.component';
+import { DashboardPageComponent } from './DashboardPage/DashboardPage.component';
+import { SignupComponent } from './Authentification/signup/signup.component';
 
 const routes: Routes = [
-  {path:'',redirectTo:'dashboard',pathMatch:'full'},
-  {path:'dashboard',component:DashboardComponent},
-  {path:'products',component:ProductsComponent},
-  {path:'statistics',component:StatisticsComponent},
-  {path:'pages',component:PagesComponent},
-  {path:'coupens',component:CoupensComponent},
-  {path:'media',component:MediaComponent},
-  {path:'settings',component:SettingsComponent},
-  {path:'profile',component:AdminProfileComponent},
+  {path:'',redirectTo:'dashboardpage',pathMatch:'full'},
+  {path:'dashboardpage',component:DashboardPageComponent,
+  children:[
+     {path:'',redirectTo:'dashboard',pathMatch:'full'},
+     {path:'dashboard',component:DashboardComponent },
+     {path:'products',component:ProductsComponent},
+     {path:'statistics',component:StatisticsComponent },
+     {path:'pages',component:PagesComponent},
+     {path:'coupens',component:CoupensComponent},
+     {path:'media',component:MediaComponent},
+     {path:'settings',component:SettingsComponent},
+     {path:'profile',component:AdminProfileComponent},
+    ] 
+  },
+  {path:'login',component:LoginComponent},
+  {path:'signup',component:SignupComponent},
   
 ];
 

@@ -1,0 +1,89 @@
+<div class="header" [ngClass]="getHeaderClass()">
+  <div class="head-content">
+    <div class="head-content-left">
+      <div class="search-container">
+        <div  class="normal-search">
+          <input type="search"
+                 class="search" 
+                 placeholder="Search here..."
+                 (focus)="hidePlaceholder()" 
+                 (blur)="showPlaceholder()">
+          <i class="far fa-search search-icon"></i>
+        </div>
+      </div>
+      <!-- <div>
+        <mat-card>
+          <mat-card-content>
+                  <mat-slide-toggle color="primary" [formControl]="toggleControl">Slide me!</mat-slide-toggle>
+          </mat-card-content>
+        </mat-card>
+      </div> -->
+    </div>
+    <div class="head-content-right">
+      <div class="head-menu">
+        <div class="head-menu-item">
+           <button class="head-menu-item-btn ripple"
+                   [cdkMenuTriggerFor]="languageOverlay" 
+                  >   
+             <img [src]="'assets/flags/'+selectedLanguage.flag+'.png'" class="flag" alt="flag">
+           </button>
+        </div>
+        
+       <div class="head-menu-item">
+        <button class="head-menu-item-btn ripple">   
+          
+           <i class="far fa-comment-alt menu-icon"></i>
+        </button>
+       </div>
+       <div class="head-menu-item">
+        <button class="head-menu-item-btn ripple">   
+          <i class="far fa-bell menu-icon"></i>
+          <div class="circle-indicator pulse"></div>
+        </button>
+      </div>
+      </div>
+      <div class="head-user-avatar-container" [cdkMenuTriggerFor]="adminOverlay">
+        <div class="image-admin">
+         <img src="assets/flags/mohamed.jpg" alt="user" class="user-avatar">
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #adminOverlay>
+  <div class="overlay overlay-admin overlay-fall Hiding" cdkMenu> 
+     <ul>
+      <li *ngFor="let item of AdminItems"
+           (click)="HideOverlay()">
+       <a  [routerLink]="[item.routerLink]" 
+           >
+        <i [class]="item.icon"></i>
+        <span>{{item.label}}</span> 
+       </a>
+      </li>
+     </ul>
+     <div class="logout">
+      <a  [routerLink]="['/login']" >
+       <span>Logout</span> 
+      </a>
+     </div>
+  </div>
+</ng-template>
+ 
+<ng-template  #languageOverlay >
+      <div class="overlay overlay-language overlay-fall Hiding" cdkMenu>
+        <ul>
+          <li *ngFor="let lang of languages"
+              (click)="onLanguageSelect(lang)"
+              (click)="HideOverlay()"
+              >
+            <img [src]="'assets/flags/'+lang.flag+'.png'" alt="">
+            <span>{{lang.language}}</span> 
+          </li>
+        </ul>
+      </div>
+</ng-template> 
+ 
