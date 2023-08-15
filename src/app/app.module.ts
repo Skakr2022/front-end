@@ -28,7 +28,11 @@ import {
 } from '@angular/cdk/menu';
 import { LoginComponent } from './Authentification/login/login.component';
 import { SignupComponent } from './Authentification/signup/signup.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthValidatorsService } from './Authentification/auth-validators.service';
+import { AuthGuardService } from './Authentification/auth-guard.service';
+import { AuthGuard2Service } from './Authentification/auth-guard2.service';
 
 
 
@@ -50,7 +54,6 @@ import { FormsModule } from '@angular/forms';
     AdminProfileComponent,
     LoginComponent,
     DashboardPageComponent,
-    
     SignupComponent
     
     
@@ -68,9 +71,14 @@ import { FormsModule } from '@angular/forms';
      CdkMenuGroup,
      CdkMenuItemCheckbox,
      CdkMenuItemRadio,
-     FormsModule
+     FormsModule,
+     ReactiveFormsModule,
+     HttpClientModule,
   ],
-  providers: [],
+
+  providers: [AuthValidatorsService,
+              AuthGuardService,
+              AuthGuard2Service],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
