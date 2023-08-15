@@ -11,10 +11,11 @@ import { AdminProfileComponent } from './DashboardPage/admin-profile/admin-profi
 import { LoginComponent } from './Authentification/login/login.component';
 import { DashboardPageComponent } from './DashboardPage/DashboardPage.component';
 import { SignupComponent } from './Authentification/signup/signup.component';
+import { AuthGuardService } from './Authentification/auth-guard.service';
 
 const routes: Routes = [
   {path:'',redirectTo:'dashboardpage',pathMatch:'full'},
-  {path:'dashboardpage',component:DashboardPageComponent,
+  {path:'dashboardpage',canActivate:[AuthGuardService],component:DashboardPageComponent,
   children:[
      {path:'',redirectTo:'dashboard',pathMatch:'full'},
      {path:'dashboard',component:DashboardComponent },

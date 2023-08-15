@@ -3,6 +3,7 @@ import { Component, HostBinding, HostListener, Input, OnInit } from '@angular/co
 import { Languages, adminElements } from './header-dummy-data';
 import { FormControl } from '@angular/forms';
 import { OverlayContainer } from '@angular/cdk/overlay';
+import { AuthGuard2Service } from 'src/app/Authentification/auth-guard2.service';
 
 @Component({
   selector: 'app-header',
@@ -23,7 +24,7 @@ export class HeaderComponent implements OnInit {
   darkClassName='theme-dark';
   lightClassName='them-light';
   
-
+  constructor(private authGuard:AuthGuard2Service){}
 
   ngOnInit(): void {
       this.selectedLanguage=this.languages[0];
@@ -67,6 +68,10 @@ export class HeaderComponent implements OnInit {
       styleClass='head-md-screen';
     }
    return styleClass;
+  }
+
+  onLogout(){
+    //  this.authGuard.logout();
   }
   
 }
