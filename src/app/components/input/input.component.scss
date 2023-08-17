@@ -1,0 +1,61 @@
+.x{
+
+    padding-left: 10px;
+    padding-right: 10px;
+
+    .edit-label{
+        color: #260944;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        font-weight: 600!important;
+    }
+
+    // Change Mat-Input Border Color & Width
+    ::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,
+    ::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,
+    ::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing {
+    border-color: #B1B5C3;
+    }
+
+    // Hover To Change Outline Color Same as Border Color in Mat-Input
+    ::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__leading,
+    ::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__notch,
+    ::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__trailing {
+        border-color: rgb(116, 133, 133);
+    }
+
+    // Hover To Change Outline Color Same as Border Color in Mat-Input
+    ::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,
+    ::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,
+    ::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing {
+        
+        border-color: rgb(6, 245, 245);
+    }
+
+//Border Radius in Angular Material
+    ::ng-deep .mat-form-field-appearance-outline .mdc-notched-outline__leading {
+    border-radius: 20px 0 0 20px !important;
+    }
+
+    ::ng-deep .mat-form-field-appearance-outline .mdc-notched-outline__trailing {
+    border-radius: 0 15px 15px 0 !important;
+    }
+
+
+    ::ng-deep .mat-mdc-text-field-wrapper{
+        height: 40px  !important;
+    }
+
+    ::ng-deep .mat-mdc-input-element{
+        top: -7px !important;
+        position: relative;
+    }
+
+    ::ng-deep .mat-mdc-form-field-icon-prefix>.mat-icon{
+        padding-top: 0 !important;
+    }
+
+    
+}
+
+

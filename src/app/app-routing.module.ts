@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProductsComponent } from './products/products.component';
-import { StatisticsComponent } from './statistics/statistics.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ProductsComponent } from './components/products/products.component';
+import { StatisticsComponent } from './components/statistics/statistics.component';
 import { PagesComponent } from './pages/pages.component';
-import { CoupensComponent } from './coupens/coupens.component';
-import { MediaComponent } from './media/media.component';
+import { CoupensComponent } from './components/coupens/coupens.component';
+import { MediaComponent } from './components/media/media.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 
