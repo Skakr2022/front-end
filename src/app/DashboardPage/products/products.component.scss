@@ -1,0 +1,63 @@
+.mat-mdc-header-cell {
+    position: relative;
+    border: none;
+}
+.image{
+    width: 48px;
+    margin-right: 12px;
+    border-radius: 10px;
+}
+.mat-card-content{
+    overflow-x: auto;
+}
+
+#search{
+    margin-right: 15px;
+}
+::ng-deep .mat-mdc-form-field-subscript-wrapper {
+    display: none !important;
+}
+  
+.mat-mdc-header-cell::after {
+    // content: '';
+    // height: 70%; //You can change this if you want smaller/bigger borders
+    // width: 2px;
+    
+    // position: absolute;
+    // right: 0;
+    // top: 50%; // If you want to set a smaller height and center it, change this value
+    
+    // background-color: #1e38cc; // The color of your border
+
+    top: 35%;
+    right: 0;
+    width: 1px;
+    content: "";
+    height: 30%;
+    position: absolute;
+    background-color: #cfd4df;
+}
+
+.mat-mdc-card{
+    box-shadow: 0 4px 20px #2f8fe812;
+    border-radius: 10px!important;
+    display: block!important;
+    border: none!important;
+    padding: 25px;
+}
+
+.mat-mdc-card-header{
+    padding: 0;
+    align-items: center !important;
+    justify-content: space-between;
+}
+
+
+.mat-mdc-card-content{
+    padding: 0;
+}
+.mat-card-title{
+    margin: 0;
+    padding: 0;
+}
+
