@@ -1,10 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, NgForm, NgModel, Validators } from '@angular/forms';
 import { Auth } from './Auth.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthValidatorsService } from '../auth-validators.service';
 import { AuthGuard2Service } from '../auth-guard2.service';
+import { CoreService } from 'src/app/services/core.service';
+import { AuthService } from '../auth.service';
+
 
 @Component({
   selector: 'app-signup',
@@ -12,6 +15,10 @@ import { AuthGuard2Service } from '../auth-guard2.service';
   styleUrls: ['./signup.component.scss','../../../assets/css/styles.min.css']
 })
 export class SignupComponent implements OnInit {
+
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
   // @ViewChild('f') signupForm! :NgForm;
   @ViewChild('Email') seeNgModel!:NgModel;
   emailFieldBlurred=true;
@@ -22,7 +29,10 @@ export class SignupComponent implements OnInit {
               private fb:FormBuilder,
               private router:Router,
               private authGuard:AuthGuard2Service,
-              private authValidators:AuthValidatorsService){}
+              private authValidators:AuthValidatorsService,
+              private _coreService:CoreService,
+              private authService:AuthService
+              ){}
   
   ngOnInit(){
     this.signupForm=this.fb.group({
@@ -36,20 +46,43 @@ export class SignupComponent implements OnInit {
     
   }
 
+  form: any = {
+    username: null,
+    email: null,
+    password: null
+  };
+  
+
   onSubmit(Data: Auth){
+    console.log(Data);
     if(this.signupForm.invalid){
           this.authValidators.checkValidForm();
           this.isEmpty=true;
     }
     else{ 
-    this.Http.post('https://ng-backend-6d456-default-rtdb.firebaseio.com/post.json',Data)
-    .subscribe(responseDate=>{ 
-          console.log(responseDate);
-          this.authGuard.login();
-          this.router.navigate(['/dashboardpage'])  
+
+      const formData = new FormData();
+      formData.append('fullName',this.signupForm.value.fullName)
+      formData.append('email',this.signupForm.value.email)
+      formData.append('password',this.signupForm.value.password)
+      formData.append('username',this.signupForm.value.username)
+      
+
+    this.authService.register(formData).subscribe({
+      next: (val: any) => {
+        this._coreService.openSnackBar('Product successfully added!');
+        this.authGuard.login(formData);
+        this.router.navigate(['/dashboardpage'])  
+      },
+      error: (err: any) => {
+        console.error(err);
+      },
     })
+ 
+    
    }
   }
 }
+
 
 
