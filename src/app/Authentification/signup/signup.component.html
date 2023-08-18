@@ -25,12 +25,12 @@
                   <img src="../assets/images/logos/dark-logo.svg" width="180" alt="">
                 </a>
                 <p class="text-center">Your Social Campaigns</p>
-                <form [formGroup]="signupForm" (ngSubmit)="onSubmit(f.value)" #f="ngForm">
+                <form name="form" [formGroup]="signupForm" (ngSubmit)="onSubmit(f.value)" #f="ngForm">
                   <div class="mb-3">
                     <label for="exampleInputtext1" class="form-label">Full name</label>
                     <input type="text"
                            class="form-control" 
-                           id="exampleInputtext1" 
+                           id="exampleInputtext2" 
                            aria-describedby="textHelp"
                            formControlName="fullName"
                            >
@@ -75,7 +75,7 @@
                     <span *ngIf="(isEmpty && signupForm.get('confirmPassword')?.hasError('required')) || (signupForm.get('confirmPassword')?.hasError('required') && signupForm.get('confirmPassword')?.touched)">this field is required</span> 
                     <span *ngIf="signupForm.get('confirmPassword')?.hasError('passwordsMismatch') && signupForm.get('confirmPassword')?.touched  && signupForm.get('confirmPassword')?.value">Passwords do not match.</span> 
                   </div>
-                  <button  type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign Up</button>
+                  <button  type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" (click)="onSubmit(f.value)">Sign Up</button>
                   <div class="d-flex align-items-center justify-content-center">
                     <p class="fs-4 mb-0 fw-bold">Already have an Account?</p>
                     <a class="text-primary fw-bold ms-2" [routerLink]="['/login']">Sign In</a>

@@ -12,7 +12,7 @@ export const navbarData =[
     {
         routerLink: 'statistics',
         icon: 'fal fa-chart-bar',
-        label: 'Statistics'
+        label: 'Product Category'
     },
     {
         routerLink: 'pages',

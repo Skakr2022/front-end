@@ -6,6 +6,9 @@ import { map } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthValidatorsService } from '../auth-validators.service';
 import { AuthGuard2Service } from '../auth-guard2.service';
+import { AuthService } from '../auth.service';
+import { CoreService } from 'src/app/services/core.service';
+import { StorageService } from '../storage-service.service';
 
 @Component({
   selector: 'app-login',
@@ -21,11 +24,37 @@ export class LoginComponent implements OnInit{
               private http:HttpClient,
               private router:Router,
               private authValidators:AuthValidatorsService,
-              private authGuard:AuthGuard2Service){}
+              private authGuard:AuthGuard2Service,
+              private authService:AuthService,
+              private _coreService: CoreService,
+              private storageService:StorageService){}
   ngOnInit (){
     this.loginForm= this.fb.group({
-        username: new FormControl(null,[Validators.required]),
-        password: new FormControl(null,Validators.required) 
+        username: new FormControl('',[Validators.required]),
+        password: new FormControl('',Validators.required) 
+    })
+  }
+  
+
+  onSubmit1(){
+
+    const formData = new FormData();
+    formData.append("username",this.loginForm.value.username)
+    formData.append("password",this.loginForm.value.password)
+    console.log(this.loginForm.value)
+    this.authService.login(this.loginForm.value).subscribe({
+      next: (val: any) => {
+        this.storageService.saveUser(val);
+        this._coreService.openSnackBar('user successfully conected!');
+         
+      },
+      complete: () =>{
+        console.log("router")
+        this.router.navigate(['/dashboardpage']) 
+      },
+      error: (err: any) => {
+        console.error(err);
+      },
     })
   }
   
@@ -40,7 +69,7 @@ export class LoginComponent implements OnInit{
       this.authValidators.checkValidForm();
       this.isEmpty=true;
     }else {
-    this.http.get('https://ng-backend-6d456-default-rtdb.firebaseio.com/post.json')
+    this.http.post('http://localhost:8080/user/login',this.loginForm.value)
     .pipe(map((responseDate)=>{
         // console.log(responseDate)
      const postsArray:any[]=[];
@@ -48,6 +77,7 @@ export class LoginComponent implements OnInit{
       if(responseDate.hasOwnProperty(key)){
          postsArray.push({ ...responseDate[key as keyof typeof responseDate],id:key});
       }
+
      }
       return postsArray;
      }) 
@@ -59,7 +89,7 @@ export class LoginComponent implements OnInit{
       for(let post of this.loadedPosts){
        if(post.email === email.value  && post.password  === password.value ){
            console.log('success login');
-           this.authGuard.login();
+           this.authGuard.login([]);
            this.router.navigate(['/dashboardpage']);
            isLoginSuccessful=true;
            break;

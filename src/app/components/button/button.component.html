@@ -1,0 +1,10 @@
+<button mat-raised-button
+    [color]="color"
+	[type]="type"
+	(click)="onClick()"
+	[disabled]="isDisabled" >
+	{{ text }}
+    <mat-icon *ngIf="SuffixIcon"  matSuffix> {{SuffixIcon}} </mat-icon>
+    <mat-icon *ngIf="prefixIcon"  matSuffix> {{prefixIcon}} </mat-icon>
+</button>
+
