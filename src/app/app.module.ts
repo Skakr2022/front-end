@@ -26,12 +26,12 @@ import { BodyComponent } from './DashboardPage/body/body.component';
 import { SidenavComponent } from './DashboardPage/sidenav/sidenav.component';
 import { DashboardComponent } from './DashboardPage/dashboard/dashboard.component'; 
 import { ProductsComponent } from './DashboardPage/products/products.component'; 
-import { StatisticsComponent } from './DashboardPage/statistics/statistics.component'; 
+import { ProductsCategoriesComponent } from './DashboardPage/products-categories/products-categories.component'; 
 import { CoupensComponent } from './DashboardPage/coupens/coupens.component'; 
 import { MediaComponent } from './DashboardPage/media/media.component';
 import { SettingsComponent } from './DashboardPage/settings/settings.component';
 import { HeaderComponent } from './DashboardPage/header/header.component';
-import { ChatComponent } from './DashboardPage/chat/chat.component';
+import { ChatBoxComponent } from './DashboardPage/chat-box/chat-box.component';
 import { AdminProfileComponent } from './DashboardPage/admin-profile/admin-profile.component';
 import { DashboardPageComponent } from './DashboardPage/DashboardPage.component';
 import { DialogEditComponent } from './DashboardPage/dialog-edit/dialog-edit.component';
@@ -40,12 +40,12 @@ import { SignupComponent } from './Authentification/signup/signup.component';
 import { InputComponent } from './components/input/input.component';
 import { ButtonComponent } from './components/button/button.component';
 import { TableComponent } from './components/table/table.component';
-import { PagesComponent } from './DashboardPage/pages/pages.component';
+import { UsersComponent } from './DashboardPage/users/users.component';
 
 import { AuthValidatorsService } from './Authentification/auth-validators.service';
 import { AuthGuardService } from './Authentification/auth-guard.service';
 import { AuthGuard2Service } from './Authentification/auth-guard2.service';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 
@@ -60,11 +60,10 @@ import {
   CdkMenuItem,
   CdkMenuBar,
 } from '@angular/cdk/menu';
-
-
-
-
-
+import { CustomersService } from './services/Customers.service';
+import { DialogCategoryComponent } from './DashboardPage/dialog-category/dialog-category.component';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { SortingDataAccessorService } from './services/sorting-data-accessor.service';
 
 @NgModule({
   declarations: [
@@ -72,12 +71,12 @@ import {
     BodyComponent,
     SidenavComponent,
     DashboardComponent,
-    StatisticsComponent,
+    ProductsCategoriesComponent,
     CoupensComponent,
     MediaComponent,
     SettingsComponent,
     HeaderComponent,
-    ChatComponent,
+    ChatBoxComponent,
     AdminProfileComponent,
     LoginComponent,
     DashboardPageComponent,
@@ -88,8 +87,8 @@ import {
     ButtonComponent,
     TableComponent,
     DataPropertyGetterPipe,
-    PagesComponent,
-
+    UsersComponent,
+    DialogCategoryComponent,
   ],
   
   imports: [
@@ -123,11 +122,17 @@ import {
     MatSortModule,
     MatSnackBarModule,
     FormsModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    
   ],
 
   providers: [AuthValidatorsService,
               AuthGuardService,
-              AuthGuard2Service],
+              AuthGuard2Service,
+              CustomersService,
+              SortingDataAccessorService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

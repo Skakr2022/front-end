@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit{
     })
   }
   
-  onSubmit(loginData: Auth){
+  onSubmit(){
      
     this.fetchPosts();
   }
@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit{
       this.authValidators.checkValidForm();
       this.isEmpty=true;
     }else {
-    this.http.post('http://localhost:8080/user/login',this.loginForm.value)
+    this.http.get('http://localhost:8080/user')
     .pipe(map((responseDate)=>{
         // console.log(responseDate)
      const postsArray:any[]=[];
@@ -89,7 +89,7 @@ export class LoginComponent implements OnInit{
       for(let post of this.loadedPosts){
        if(post.email === email.value  && post.password  === password.value ){
            console.log('success login');
-           this.authGuard.login([]);
+           this.authGuard.login();
            this.router.navigate(['/dashboardpage']);
            isLoginSuccessful=true;
            break;

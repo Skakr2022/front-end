@@ -29,8 +29,8 @@ export class AuthGuard2Service {
     return promise;
   }
 
-  login(responseData:any){
-    localStorage.setItem('userData',JSON.stringify(responseData));
+  login(){
+    // localStorage.setItem('userData',JSON.stringify(responseData));
     this.loggedIn=true;
   }
   logout(){

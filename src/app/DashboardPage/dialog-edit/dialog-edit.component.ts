@@ -10,9 +10,8 @@ import { ProductService } from 'src/app/services/product.service';
   selector: 'app-dialog-edit',
   templateUrl: './dialog-edit.component.html',
   styleUrls: ['./dialog-edit.component.scss'],
-
 })
-export class DialogEditComponent implements OnInit{
+export class DialogEditComponent implements OnInit {
   empForm!: FormGroup;
 
   public categories: ProductCategory[] = [];
@@ -20,7 +19,6 @@ export class DialogEditComponent implements OnInit{
   message: string = "";
   imgURL: any = "";
   imagePath: any;
-  
   
   constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,
@@ -39,20 +37,22 @@ export class DialogEditComponent implements OnInit{
   
   ngOnInit(): void {
     this.listProductCategories();
+    
     if(this.data.product){
+      console.log(this.data);
       this.empForm.setValue({
         name:this.data.product.name,
         imageUrl:this.data.product.imageUrl,
         description:this.data.product.description,
         category:this.data.product.category.categoryName
-      })
+      }) 
     }
   }
-
 
   listProductCategories(){
     this.productService.getProductCategories().subscribe(
       data => {
+        console.log(data)
         this.categories = data;
       }
     )
@@ -65,7 +65,7 @@ export class DialogEditComponent implements OnInit{
         const formData = new FormData();
         formData.append("description",this.empForm.value.description)
         formData.append("name",this.empForm.value.name)
-        formData.append("imageUrl",this.userFile)
+        formData.append("imageUrl",this.userFile)   
         this.productService
           .updateProduct(this.data.product.productId, formData)
           .subscribe({
@@ -127,7 +127,7 @@ export class DialogEditComponent implements OnInit{
   updateProduct(id:number,data:any){
     this.productService.updateProduct(id,data)
   }
-  
-
-
+ 
 }
+
+

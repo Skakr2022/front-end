@@ -15,7 +15,6 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-
   register(formData:FormData): Observable<object> {  
     return this.http.post(this.AUTH_API, 
     

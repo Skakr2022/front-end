@@ -39,8 +39,8 @@ export class SignupComponent implements OnInit {
       fullName:['',[Validators.required,this.authValidators.validateFullName]],
       username:['',[Validators.required]],
       email:['',[Validators.required,Validators.email]],
-      password:['',[Validators.required,Validators.minLength(6),this.authValidators.passwordValidator]],
-      confirmPassword:['',[Validators.required,this.authValidators.passwordMatchValidator,this.authValidators.passwordValidator]] 
+      password:['',[Validators.required,Validators.minLength(6)]],
+      confirmPassword:['',[Validators.required,this.authValidators.passwordMatchValidator]] 
     })
 
     
@@ -70,8 +70,9 @@ export class SignupComponent implements OnInit {
 
     this.authService.register(formData).subscribe({
       next: (val: any) => {
+        console.log("test")
         this._coreService.openSnackBar('Product successfully added!');
-        this.authGuard.login(formData);
+        // this.authGuard.login();
         this.router.navigate(['/dashboardpage'])  
       },
       error: (err: any) => {

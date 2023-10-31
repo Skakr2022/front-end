@@ -6,9 +6,8 @@ import { AuthGuard2Service } from './auth-guard2.service';
 @Injectable()
 export class AuthGuardService implements CanActivate {
 
-  constructor(private authGuard2:AuthGuard2Service,private router:Router) {
-
-  }
+  constructor(private authGuard2:AuthGuard2Service,private router:Router) {}
+  
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     return this.authGuard2.isAuthenticated()
       .then(

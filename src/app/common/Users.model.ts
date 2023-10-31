@@ -1,6 +1,7 @@
-import {Role} from '../../common/Role.model';
+import { Role } from "./Role.model";
 
-export interface Auth { 
+
+export interface Users {
     id:number;
     fullName:string;
     username:string;
